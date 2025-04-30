@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Project 2 Report</title>
+    <style>
+      :root {
+        --color-neutral-95: hsl(220 10% 95%);
+        --color-neutral-90: hsl(220 10% 90%);
+        --color-neutral-80: hsl(220 10% 80%);
+        --color-neutral-70: hsl(220 10% 70%);
+        --color-neutral-60: hsl(220 10% 60%);
+        --color-neutral-50: hsl(220 10% 50%);
+        --color-neutral-40: hsl(220 10% 40%);
+        --color-neutral-30: hsl(220 10% 30%);
+        --color-neutral-20: hsl(220 10% 20%);
+        --color-neutral-10: hsl(220 10% 10%);
+      }
+
+      html {
+        font: 100%/1.5 system-ui;
+        counter-reset: figure;
+        background: var(--color-neutral-95);
+        max-width: min(75vw, 80em);
+        margin: 0 auto;
+      }
+
+      /* Headings */
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        line-height: 1.1;
+        font-weight: 600;
+        text-wrap: balance;
+      }
+
+      h1,
+      h2 {
+        border-bottom: 1px solid var(--color-neutral-80);
+        padding-bottom: 0.2em;
+      }
+
+      h1 {
+        margin-block: 1em 0.5rem;
+        font-size: clamp(2.5em, 150% + 2vh + 2vw, 10vmin);
+        font-weight: 800;
+
+        small {
+          display: block;
+          width: fit-content;
+          padding: 0.2em 0.5em;
+          margin-inline: auto;
+          color: white;
+          background: var(--color-neutral-40);
+          font-size: 40%;
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+      }
+
+      h2 {
+        font-size: 180%;
+        color: var(--color-neutral-30);
+      }
+
+      h3 {
+        font-size: 130%;
+      }
+
+      /* Lists */
+
+      ul,
+      ol {
+        padding-inline-start: 2em;
+      }
+
+      li {
+        &::marker {
+          color: var(--color-neutral-40);
+        }
+
+        + li {
+          margin-top: 0.2em;
+        }
+      }
+
+      /* Sectioning elements */
+
+      header {
+        padding-block: 1em;
+        text-align: center;
+      }
+
+      main {
+        background: white;
+        color: var(--color-neutral-20);
+        border-radius: 1rem;
+        padding: 0.1rem 2rem;
+      }
+
+      /* Figures */
+
+      figure {
+        margin: 1em 0;
+        padding: 0.5rem;
+        margin-inline: -0.5em;
+        border: 1px solid var(--color-neutral-80);
+        box-shadow: 0 0.1em 0.2em var(--color-neutral-95);
+        text-align: center;
+        background: white;
+
+        > figcaption {
+          font: 500 75% var(--font-sans);
+          background: var(--color-neutral-95);
+          padding: 0.5rem;
+          margin: -0.5rem;
+          margin-top: 0.5rem;
+          counter-increment: figure;
+          text-align: left;
+
+          &::before {
+            content: 'Figure ' counter(figure) ': ';
+            font-weight: bold;
+            color: var(--color-neutral-40);
+          }
+
+          a:not(:hover, :focus, :active) {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-color: color-mix(
+              in lab,
+              currentColor,
+              transparent 70%
+            );
+          }
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>
+        <small>Assignment 4</small>
+        Persuasive or Deceptive Visualization?
+      </h1>
+
+      <p><strong>Huiting Chen</strong> — <em>huc014@ucsd.edu</em></p>
+    </header>
+
+    <main>
+      <h2>Proposition: Daniel is a better police officer comparing to Mathew</h2>
+
+      <section>
+        <h3>FOR the Proposition</h3>
+
+        <figure>
+          <!-- <img src="support.png" alt="plot supporting the proposition" width="700"/> -->
+          <iframe
+  src="support.html"
+  width="100%"
+  height="600"
+  frameborder="0"
+  style="border: none;"
+></iframe>
+          <figcaption>Bar plot demonstrating Daniel is a better police officer comparing to Mathew by 
+            exonerated and unsubstantiated without arrest complaints.</figcaption>
+        </figure>
+
+        <p>Design Decisions and Rationale:</p>
+
+        <ul>
+          <li>Choose count instead of ratio: I found both of them have 75 complaints. So we don't need to worry about ratio.
+            To avoid people being suspect for overall count, I put the information on the top of the graph as grey text. I think this make the 
+            plot seems more precise and so more persuasive. Without specifying the overall count, it is easy for people to develop suspect that
+            Daniel has more complaints. I will scale it to 2 because it is true that both officers have 75 complaints.
+          </li>
+          <li>Data: To investigate on how to show Daniel outperforming Machew, I count the number of complaints for different 
+            'board_disposition' and 'outcome_description' for each individuals. I found that Daniel has more exonerated cases and less 
+            unsubstantiated cases without arrest than Mathew does, which would make Daniel seems a better police officer. So I put them 
+            in the first plot. I think this can be scaled to -0.5 because all data are true but I only displayed part of the data. The problem 
+            here is that I can't display substantiated or unsubstantiated with arrest otherwise it would be easy to find that the plot is deceptive. But the 
+            blank still makes the plot a little suspective. I also considered deleting unsubstantiated directly, but in this way the plot 
+            contains too little information.
+          </li>
+          <li>Bar plot following rules: The bar plot follows the rules of building a good plot. It has the same scale over axis and start from 0. The summations 
+            are in the right place corresponding to its value. Different colors for different people and use similar colors for the same people 
+            but different outcomes. As a bar plot, it is also easier for people to read. I made this decision 
+            because I believe for seasoned readers it is very easy find tricks like different scales and this could make them suspect 
+            the reability of the plot. By showing chosen data in a good plot, it can make the data seems more reliable. I would scale this 
+            to 2. I also considered using ratio and pie plot. But to make the plot more professional and reliable, I followed the instructions 
+            for a good visualization and still chose bar plot.
+          </li>
+          <li>Text: I put the annotations making sub conclusions. I wish they can draw the attension quickly so when people read them first 
+            and then plot they would find the conclusions are true and agree on the proposition. The conclusions are totally true, but still 
+            tries to lead people's opinion. it has scale -0.5. I tried a version without it but it comes that it would take more time to draw the conlusions.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>AGAINST the Proposition</h3>
+
+        <figure>
+          <!-- <img src="against.png" alt="plot against the proposition" width="700" /> -->
+          <iframe
+  src="against.html"
+  width="100%"
+  height="600"
+  frameborder="0"
+  style="border: none;"
+></iframe>
+          <figcaption>Bar plot demonstrating Machew is a better police officer comparing to Daniel by 
+            substantiated and unsubstantiated with action complaints.</figcaption>
+        </figure>
+
+        <p>Design Decisions and Rationale:</p>
+
+        <ul>
+          <li>Choose count instead of ratio: I found both of them have 75 complaints. So we don't need to worry about ratio.
+            To avoid people being suspect for overall count, I put the information on the top of the graph as grey text. I think this make the 
+            plot seems more precise and so more persuasive. Without specifying the overall count, it is easy for people to develop suspect that
+            Mathew has more complaints. I will scale it to 2 because it is true that both officers have 75 complaints.</li>
+          <li>Data: Similarly, to investigate on how to show Machew outperforming Daniel, I count the number of complaints for different 
+            'board_disposition' and 'outcome_description' for each individuals. I found that Machew has less substantiated cases and more 
+            unsubstantiated cases with action than Daniel does, which would make Mathew seems a better police officer. So I put them 
+            in the second plot. I think this can be scaled to -0.5 because all data are true but I only displayed part of the data. The problem 
+            here is that I can't display exonerated or unsubstantiated without action otherwise it would undermine my statement. But the 
+            blank still makes the plot a little suspective. I also considered deleting unsubstantiated directly, but in this way the plot 
+            contains too little information.</li>
+          <li>Bar plot following rules: The bar plot follows the rules of building a good plot. It has the same scale over axis and start from 0. The summations 
+            are in the right place corresponding to its value. Different colors for different people and use similar colors for the same people but different outcomes. As a bar plot, it is also easier for people to read. I made this decision 
+            because I believe for seasoned readers it is very easy find tricks like different scales and this could make them suspect 
+            the reability of the plot. By showing chosen data in a good plot, it can make the data seems more reliable. I would scale this 
+            to 2. I also considered using ratio and pie plot. But to make the plot more professional and reliable, I followed the instructions for a good visualization and still chose bar plot.</li>
+          <li>Text: I put the annotations making sub conclusions. I wish they can draw the attension quickly so when people read them first 
+            and then plot they would find the conclusions are true and agree on the proposition. The conclusions are totally true, The conclusions are totally true, but still tries to lead people's opinion. it has scale -0.5. I tried a version without it but it comes that it would take more time to draw the conlusions.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Final Reflection</h2>
+
+        <p>I dicide to make the plot deceptive using data at a very start point because I think it can be easy for seasoned readers to 
+          find the trick once they carefully read a plot with different scales and they would be suspect if I hide some important numbers. 
+          So the most difficult part here is to choose the right data. Plotting is relatively simple. I just follow the instructions for good 
+          plots.
+        </p>
+        <p>
+          It is kind of surprising to see how the data differs so much given they received seem number of complaints. But it may just because 
+          the sample size is small. I think "ethical analysis and visualization" indicate that we shouldn't use visualization to lead a wrong 
+          conclusion. It gets worse when this may harm people. I personally think these plots are not so ethical because it may harm the two 
+          officers I chose.
+        </p>
+        <p>I would say both plots are misleading. Both of them used part of data and have annotations as sub conclusions to lead reader's 
+          idea. They only show the data supporting their argument. An acceptable choice should demonstrate all data necessary when making 
+          the conclusion.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
